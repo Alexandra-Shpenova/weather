@@ -22,6 +22,8 @@ class Window:
       self.btn = Button(self.root, text="Ввод", command=lambda x=links: self.check_input(links))
       self.btn.grid(row=1, column=1, sticky='W')
 
+   '''Создадим функцию установки текста на экране. 
+   Она будет трансформировать словарь links в строку.'''
    def set_text(self, links):
       text = ""
       for city in links:
@@ -29,6 +31,17 @@ class Window:
          text += city + ', '
       text = text[:-2]
       self.label.configure(text=text)
+
+   '''Добавим функцию проверки 
+   введённых пользователем значений.'''
+
+   def check_input(self, links):
+      choice = self.entry.get()
+      if choice not in self.check:
+         return
+      #self.parse_weather(links[choice])
+
+
 
 class Weather:
    def __init__(self,link):
@@ -58,6 +71,8 @@ class Weather:
       print(links)
 
       return Window(links).root.mainloop()
+
+
 
 w = Weather("https://rp5.ru/Погода_в_России")
 w.get_cities()
