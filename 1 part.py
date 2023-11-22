@@ -36,10 +36,11 @@ class Window:
       self.root = Tk()
       self.root.geometry("800x600")
       self.root.title("Прогноз погоды")
+      self.root['bg']='#5daad3'
       self.check = []
 
       #Настройки текста
-      self.label = Label(self.root, wraplength=800, font=("Trebuchet MS", 11))
+      self.label = Label(self.root, wraplength=800, bg = '#c9e9ff', font=("Trebuchet MS", 11))
       self.label.grid(row=0, column=0, columnspan=2)
       self.set_text(links)
 
@@ -48,7 +49,7 @@ class Window:
       self.entry.grid(row=1, column=0, sticky='E')
 
       #Создание кнопки
-      self.btn = Button(self.root, text="Ввод", command=lambda x=links: self.check_input(links))
+      self.btn = Button(self.root, text="Ввод",bg = '#215b77', command=lambda x=links: self.check_input(links))
       self.btn.grid(row=1, column=1, sticky='W')
 
 

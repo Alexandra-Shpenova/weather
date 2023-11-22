@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 from tkinter import *
+from PIL import Image, ImageTk
+
 
 class Weather:
    def __init__(self,link):
@@ -44,16 +46,16 @@ class Window:
       self.label.place(x = 0,y = 55, width = 265,height=745)
 
       self.label2 = Label(self.root, wraplength=200, bg='#c9e9ff',text='test', font=("Trebuchet MS", 11),pady=2)
-      self.label2.place(x = 267,y = 55, width = 266,height=745)
+      self.label2.place(x = 267,y = 55, width = 265,height=745)
 
       self.label3 = Label(self.root, wraplength=200, bg='#c9e9ff', text='test', font=("Trebuchet MS", 11),pady=2)
-      self.label3.place(x=534, y=55, width=266, height=745)
+      self.label3.place(x=534, y=55, width=265, height=745)
 
       self.set_text(links)
 
       #Поле ввода
       self.entry = Entry(self.root, width=50)
-      self.entry.place(x = 0,y = 12,width=600, height=30)
+      self.entry.place(x = 5,y = 12,width=600, height=30)
 
       #Создание кнопки
       self.btn = Button(self.root, text="Поиск",font=("Trebuchet MS", 20),
@@ -70,12 +72,12 @@ class Window:
       n = 0
 
       for city in links:
-         if n < 68:
+         if n < 64:
              self.check.append(city)
              text1 += city + ', '
              n += 1
              print(n)
-         elif 68 < n < 176:
+         elif 64 <= n <= 128:
              self.check.append(city)
              text2 += city + ', '
              n += 1
@@ -88,9 +90,9 @@ class Window:
 
       text1 = text1[:-2]
       text2 = text2[:-2]
-      text3 = text2[:-2]
-      self.label.configure(text=text1)
-      self.label2.configure(text=text2)
+      text3 = text3[:-2]
+      self.label2.configure(text=text1)
+      self.label.configure(text=text2)
       self.label3.configure(text=text3)
 
 
@@ -112,7 +114,15 @@ class Window:
       if text is None:
          text = data.find('div', {'class': 'ArchiveInfo'})
       text = text.text.replace("Архив погоды на метеостанции", "")
-      self.label.configure(text=temp + "\n" + text)
+      self.label2.configure(text=temp + "\n" + text)
+      self.label2.place( x = 200,y = 150, width = 400, height=350)
+      self.label.destroy()
+      self.label3.destroy()
+
+      #img = ImageTk.PhotoImage(Image.open("snow_.png"))
+      #b = Label(image=img)
+
+      #b.pack()
 
 w = Weather("https://rp5.ru/Погода_в_России")
 w.get_cities()
