@@ -38,17 +38,17 @@ class Window:
       self.root = Tk()
       self.root.geometry("800x600")
       self.root.title("Прогноз погоды")
-      self.root['bg']='#5daad3'
+      self.root['bg']='#8ad4ff'
       self.check = []
 
       #Настройки текста
-      self.label = Label(self.root, wraplength=200, bg = '#c9e9ff', font=("Trebuchet MS", 11),pady=2)
+      self.label = Label(self.root, wraplength=200, bg = '#c9e9ff',fg='#142129', font=("Trebuchet MS", 11),pady=2)
       self.label.place(x = 0,y = 55, width = 265,height=745)
 
-      self.label2 = Label(self.root, wraplength=200, bg='#c9e9ff',text='test', font=("Trebuchet MS", 11),pady=2)
+      self.label2 = Label(self.root, wraplength=200, bg='#c9e9ff',fg='#142129', font=("Trebuchet MS", 11),pady=2)
       self.label2.place(x = 267,y = 55, width = 265,height=745)
 
-      self.label3 = Label(self.root, wraplength=200, bg='#c9e9ff', text='test', font=("Trebuchet MS", 11),pady=2)
+      self.label3 = Label(self.root, wraplength=200, bg='#c9e9ff',fg='#142129', font=("Trebuchet MS", 11),pady=2)
       self.label3.place(x=534, y=55, width=265, height=745)
 
       self.set_text(links)
@@ -114,7 +114,7 @@ class Window:
       if text is None:
          text = data.find('div', {'class': 'ArchiveInfo'})
       text = text.text.replace("Архив погоды на метеостанции", "")
-      self.label2.configure(text=temp + "\n" + text)
+      self.label2.configure(text=temp + "\n" + text, fg = '#142129')
       self.label2.place( x = 200,y = 150, width = 400, height=350)
       self.label.destroy()
       self.label3.destroy()
