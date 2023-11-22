@@ -12,7 +12,7 @@ class Window:
       #Настройки текста
       self.label = Label(self.root, wraplength=800, font=("Trebuchet MS", 11))
       self.label.grid(row=0, column=0, columnspan=2)
-      #self.set_text(links) <-- ща создадим
+      self.set_text(links)
 
       #Поле ввода
       self.entry = Entry(self.root, width=50)
@@ -22,6 +22,13 @@ class Window:
       self.btn = Button(self.root, text="Ввод", command=lambda x=links: self.check_input(links))
       self.btn.grid(row=1, column=1, sticky='W')
 
+   def set_text(self, links):
+      text = ""
+      for city in links:
+         self.check.append(city)
+         text += city + ', '
+      text = text[:-2]
+      self.label.configure(text=text)
 
 class Weather:
    def __init__(self,link):
@@ -50,9 +57,9 @@ class Weather:
 
       print(links)
 
-      return links
+      return Window(links).root.mainloop()
 
 w = Weather("https://rp5.ru/Погода_в_России")
 w.get_cities()
-window = Window("https://rp5.ru/Погода_в_России")
-window.root.mainloop()
+#window = Window("https://rp5.ru/Погода_в_России")
+#window.root.mainloop()
