@@ -1,5 +1,26 @@
 import requests
 from bs4 import BeautifulSoup
+from tkinter import *
+
+class Window:
+   def __init__(self, links):
+      self.root = Tk()
+      self.root.geometry("800x600")
+      self.root.title("Прогноз погоды")
+      self.check = []
+
+      #Настройки текста
+      self.label = Label(self.root, wraplength=800, font=("Trebuchet MS", 11))
+      self.label.grid(row=0, column=0, columnspan=2)
+      #self.set_text(links) <-- ща создадим
+
+      #Поле ввода
+      self.entry = Entry(self.root, width=50)
+      self.entry.grid(row=1, column=0, sticky='E')
+
+      #Создание кнопки
+      self.btn = Button(self.root, text="Ввод", command=lambda x=links: self.check_input(links))
+      self.btn.grid(row=1, column=1, sticky='W')
 
 
 class Weather:
@@ -33,3 +54,5 @@ class Weather:
 
 w = Weather("https://rp5.ru/Погода_в_России")
 w.get_cities()
+window = Window("https://rp5.ru/Погода_в_России")
+window.root.mainloop()
